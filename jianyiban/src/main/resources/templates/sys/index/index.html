@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台首页</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="container">
+    <!-- banner -->
+    <div class="banner">
+        <div>
+            <h1>JianYB</h1>
+        </div>
+        <div class="uu-panal">
+            <div class="setting">
+                设置
+            </div>
+            <div class="user">
+                <img class="user-avatar" src="image/avatar1.jpg">
+                <label class="username">username</label>
+                <div class="user-option">
+                    <ul>
+                        <li><a>个人中心</a></li>
+                        <li><a>退出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- left-menu -->
+    <div class="lf-box">
+        <div class="menu-container">
+            <div class="menu-list" th:each="mlist:${menu}">
+                <div class="menu-box">
+                    <div class="menuBar" th:text="${mlist.menu_name}"></div>
+                    <div class="submenuBox">
+                        <ul th:each="cMenu:${mlist.menuEntities}">
+                            <a th:href="${cMenu.menu_url}" target="winFrame">
+                                <li th:text="${cMenu.menu_name}"></li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <div class="lf-box">
+        <div class="menu-container">
+            <div class="menu-list">
+                <div class="menu-box">
+                    <div class="menuBar">主菜单</div>
+                    <div class="submenuBox">
+                        <ul>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                            <a><li>子菜单菜单1</li></a>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div> -->
+    <!--iframe content -->
+    <div class="if-content">
+        <div class="if-box">
+            <iframe name="winFrame"></iframe>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script>
+
+    $(".menuBar").click(function () {
+        if ($(this).next().css("display") == "block") {
+            $(this).next().css("display", "none");
+        } else {
+            $(this).next().css("display", "block");
+            
+        }
+
+    })
+
+</script>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: antiquewhite;
+    }
+
+    .banner {
+        position: relative;
+        height: 80px;
+        width: 100%;
+        background-color: #333333;
+    }
+
+    .banner div {
+        position: absolute;
+        max-width: 250px;
+        min-width: 200px;
+        height: 80px;
+        line-height: 80px;
+        /* background-color: bisque; */
+
+    }
+
+    .banner div h1 {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        color: azure;
+        letter-spacing: 20px;
+        text-align: center;
+        padding-left: 10px;
+    }
+
+    .uu-panal {
+        position: relative;
+        right: 20px;
+        width: 300px;
+        color: white;
+    }
+
+    .setting {
+        width: 50px;
+        height: 50px;
+    }
+
+    .user {
+        position: relative;
+        left: 60px;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    .user .user-avatar {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        margin: auto 0;
+        top: 15px;
+        left: 5px;
+    }
+
+    .user .username {
+        position: relative;
+        left: 10px;
+    }
+
+    .user-option {
+        display: none;
+        text-align: center;
+        background-color: #333333;
+        margin-top: -4px;
+        z-index: 10;
+
+    }
+
+    .user-option ul {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        height: 60px;
+        width: 90%;
+
+    }
+
+
+
+    .user-option ul li {
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .user-option ul li:nth-child(1) {
+        border-bottom: 1px solid #999999;
+    }
+
+    .user-option ul li:hover {
+        background-color: #666666;
+    }
+
+    .user:hover .user-option {
+        display: block;
+    }
+
+    .lf-box {
+        position: absolute;
+        height: 780px;
+        background-color: #333333;
+        top: 82px;
+        color: aliceblue;
+        width: 11%
+    }
+
+    .menu-container {
+        max-height: 100%;
+        overflow-y: auto;
+        width: 100%;
+        margin: 0 auto;
+        /* text-align: center; */
+    }
+
+    .menu-box {
+       
+        
+    }
+
+    .menuBar {
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+        letter-spacing: 1px;
+        /* background-color: aqua; */
+        cursor: pointer;
+        padding-inline-start: 15px;
+        padding-inline-end: 15px;
+    }
+
+    .submenuBox {
+        display: none;
+        background-color: #333333;
+       
+    }
+
+    .submenuBox ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+    .submenuBox ul a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+    }
+
+    .submenuBox ul a li {
+        height: 35px;
+        line-height: 35px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        padding-inline-start: 25px;
+        padding-inline-end: 25px;
+        background-color: #444444;
+        margin-top: 3px;
+        
+    }
+
+    .if-content {
+        position: absolute;
+        left: 11.5%;
+        top: 85px;
+        min-height: 780px;
+        width: 88%;
+        background-color: white;
+    }
+
+    .if-box {
+        width: 100%;
+        min-height: 780px;
+    }
+
+    .if-box iframe {
+        width: 100%;
+        min-height: 780px;
+        border: none;
+    }
+</style>
+
+</html>

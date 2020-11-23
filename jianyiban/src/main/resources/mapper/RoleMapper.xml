@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.io.jyb.sys.dao.RoleDao">
+    <resultMap id="RoleMap" type="com.io.jyb.sys.entity.RoleEntity">
+        <id column="role_id" property="role_id"/>
+        <result column="role_name" property="role_name"/>
+        <result column="remark" property="remark"/>
+        <result column="create_user_id" property="create_user_id"/>
+        <result column="create_time" property="create_time"/>
+    </resultMap>
+    <select id="querySelectAll" resultMap="RoleMap">
+        select * from sys_role;
+    </select>
+</mapper>

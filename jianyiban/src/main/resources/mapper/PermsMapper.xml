@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.io.jyb.sys.dao.PermsDao">
+    <resultMap id="PermsMap" type="com.io.jyb.sys.entity.PermsEntity">
+        <id column="auth_id" property="auth_id"/>
+        <result column="auth_name" property="auth_name"/>
+        <result column="remark" property="remark"/>
+        <result column="url" property="url"/>
+        <result column="create_user_id" property="create_user_id"/>
+        <result column="create_time" property="create_time"/>
+    </resultMap>
+    
+    <select id="queryAllPerms" resultMap="PermsMap">
+        select * from sys_authority;
+    </select>
+    
+</mapper>
